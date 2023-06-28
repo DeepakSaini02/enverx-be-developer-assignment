@@ -10,7 +10,7 @@ const schema = Joi.object({
 });
 
 
-export const userValidator = async (req: Request, res: Response, next: NextFunction) => {
+export const userValidator = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
     const resValidation = await schema.validateAsync(req.body)
     if (resValidation.error) {
         res.status(400).json({ error: resValidation.error });

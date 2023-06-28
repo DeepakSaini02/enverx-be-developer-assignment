@@ -24,7 +24,7 @@ export class UserEntity {
     password: string;
 
     @OneToMany(() => BlogEntity, blog => blog.user)
-    blog: BlogEntity[];    
+    blog!: BlogEntity[];    
 
     @Column({ nullable: true, default: true })
     isActive: boolean;
@@ -47,7 +47,6 @@ export class UserEntity {
         this.isActive = true
         this.createdAt = new Date()
         this.updatedAt = new Date()
-        this.blog=[]
     }
 }
 
