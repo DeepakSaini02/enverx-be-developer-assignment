@@ -21,7 +21,18 @@ class BlogPostService {
     public async getPostWithFilters(req: any): Promise<any> {
         const { gender, age, userId } = req.query;
 
-     
+        const blogPostRepository = getRepository(this.blogPosts)
+        let query = blogPostRepository.createQueryBuilder('blogPosts')
+            .leftJoinAndSelect('blogPosts.user', 'users')
+
+        if (gender && age) query = query.andWhere('users.gender = :gender', { gender }).andWhere('users.age = :age', { age });
+        else if (gender) query = query.andWhere('users.gender = :gender', { gender });
+        else if (age) query = query.andWhere('users.age = :age', { age });
+        if (userId) query = query.andWhere('users.id = :userId', { userId });
+
+        const allPosts = await query.select(['blogPosts.id', 'blogPosts.title', 'blogPosts.content','users.id','blogPosts.createdAt','blogPosts.updatedAt']).getMany();
+        return allPosts
+
     }
 
     public async createPost(req: any): Promise<any> {

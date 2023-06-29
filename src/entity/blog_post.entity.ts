@@ -5,38 +5,29 @@ import { UserEntity } from './users.entity';
 @Index(['user'])
 export class BlogPostEntity {
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
     @Column()
-    title: string;
+    title!: string;
 
     @Column()
-    content: string;
+    content!: string;
 
     @Column({ name: 'userId', type: 'integer', nullable: false })
     @ManyToOne(() => UserEntity, user => user.blog)
-    user: number;
+    user!: number;
 
     @Column({ nullable: true, default: true })
-    isActive: boolean;
+    isActive!: boolean;
 
     @Column()
     @CreateDateColumn()
-    createdAt: Date;
+    createdAt!: Date;
 
     @Column()
     @UpdateDateColumn()
-    updatedAt: Date;
+    updatedAt!: Date;
 
-    constructor() {
-        this.id = 0
-        this.title = ''
-        this.content = ''
-        this.user = 0
-        this.isActive = true
-        this.createdAt = new Date()
-        this.updatedAt = new Date()
-    }
 }
 
 

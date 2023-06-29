@@ -5,7 +5,7 @@ import authValidator from '../middleware/authValidator';
 // import 
 
 class BlogPostRoute {
-    public path = '/v1/posts/'
+    public path = '/v1/'
     public router = Router()
     public postController = new BlogPostController()
 

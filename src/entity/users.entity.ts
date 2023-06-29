@@ -6,48 +6,37 @@ import { BlogPostEntity } from './blog_post.entity';
 @Index(['email'])
 export class UserEntity {
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
     @Column()
-    name: string;
+    name!: string;
 
     @Column()
-    age: number;
+    age!: number;
 
     @Column()
-    gender: string;
+    gender!: string;
 
     @Column()
-    email: string;
+    email!: string;
 
     @Column()
-    password: string;
+    password!: string;
 
     @OneToMany(() => BlogPostEntity, blog => blog.user)
     blog!: BlogPostEntity[];
 
     @Column({ nullable: true, default: true })
-    isActive: boolean;
+    isActive!: boolean;
 
     @Column()
     @CreateDateColumn()
-    createdAt: Date;
+    createdAt!: Date;
 
     @Column()
     @UpdateDateColumn()
-    updatedAt: Date;
+    updatedAt!: Date;
 
-    constructor() {
-        this.id = 0
-        this.name = ''
-        this.age = 0
-        this.gender = ''
-        this.email = ''
-        this.password = ''
-        this.isActive = true
-        this.createdAt = new Date()
-        this.updatedAt = new Date()
-    }
 }
 
 
