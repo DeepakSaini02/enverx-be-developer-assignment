@@ -2,7 +2,7 @@ import { getRepository } from "typeorm"
 import { UserEntity } from "../entity/users.entity"
 import HttpException from "../exception/HttpException"
 import bcrypt from 'bcrypt'
-import config from '../configs/development.json'
+require('dotenv').config();
 import jwt from 'jsonwebtoken'
 
 class UserService {
@@ -18,7 +18,7 @@ class UserService {
 
     public createToken(user: any) {
         const dataStoredInToken = { id: user.id };
-        const secretKey = config['secretKey'];
+        const secretKey: any = process.env.secretKey;
         const expiresIn = "365 days";
         return { expiresIn, token: jwt.sign(dataStoredInToken, secretKey, { expiresIn }) };
     }

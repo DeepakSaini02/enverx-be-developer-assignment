@@ -1,4 +1,4 @@
-import config from '../configs/development.json'
+require('dotenv').config();
 import { Request, NextFunction, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { getRepository } from 'typeorm';
@@ -14,7 +14,7 @@ const authValidator = async (req: any, res: Response, next: NextFunction) => {
 
         const Authorization = req.header('Authorization').split('Bearer ')[1] || null;
 
-        const secretKey: string = config['secretKey'];
+        const secretKey: any = process.env.secretKey;
         const verificationResponse: any = jwt.verify(Authorization, secretKey);
         const userId = verificationResponse.id;
 
