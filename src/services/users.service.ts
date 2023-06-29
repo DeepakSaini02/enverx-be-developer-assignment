@@ -18,7 +18,7 @@ class UserService {
 
     public createToken(user: any) {
         const dataStoredInToken = { id: user.id };
-        const secretKey: any = process.env.secretKey;
+        const secretKey: any = process.env.SECRETKEY;
         const expiresIn = "365 days";
         return { expiresIn, token: jwt.sign(dataStoredInToken, secretKey, { expiresIn }) };
     }

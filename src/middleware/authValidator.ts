@@ -14,7 +14,7 @@ const authValidator = async (req: any, res: Response, next: NextFunction) => {
 
         const Authorization = req.header('Authorization').split('Bearer ')[1] || null;
 
-        const secretKey: any = process.env.secretKey;
+        const secretKey: any = process.env.SECRETKEY;
         const verificationResponse: any = jwt.verify(Authorization, secretKey);
         const userId = verificationResponse.id;
 
