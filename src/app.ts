@@ -14,8 +14,8 @@ app.use('/', userRoute.router);
 app.use('/', blogPost.router);
 
 app.use(errorMiddleware);
-
-app.listen(3000, async () => {
+const port =process.env.port || 3000
+app.listen(port, async () => {
     console.log('server starts');
     //connect to the database using typeorm
     try {
