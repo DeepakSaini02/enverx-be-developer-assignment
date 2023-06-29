@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, Unique, CreateDateColumn, UpdateDateColumn, Index, OneToMany } from 'typeorm';
-import { BlogEntity } from './blogs.entity';
+import { BlogPostEntity } from './blog_post.entity';
 
 @Entity('users')
 @Unique(['email'])
@@ -23,8 +23,8 @@ export class UserEntity {
     @Column()
     password: string;
 
-    @OneToMany(() => BlogEntity, blog => blog.user)
-    blog!: BlogEntity[];    
+    @OneToMany(() => BlogPostEntity, blog => blog.user)
+    blog!: BlogPostEntity[];
 
     @Column({ nullable: true, default: true })
     isActive: boolean;

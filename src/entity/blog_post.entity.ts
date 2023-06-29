@@ -1,9 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Index, ManyToOne } from 'typeorm';
 import { UserEntity } from './users.entity';
 
-@Entity('blogs')
+@Entity('blogPost')
 @Index(['user'])
-export class BlogEntity {
+export class BlogPostEntity {
     @PrimaryGeneratedColumn()
     id: number;
 

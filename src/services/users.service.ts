@@ -11,7 +11,7 @@ class UserService {
     public createUser = async (data: any): Promise<any> => {
         const userRepository = getRepository(this.users)
         const findUser = await userRepository.findOne({ where: { email: data.email, isActive: true } })
-        if (findUser) throw new HttpException(400, 'user already exists', 'FAILURE')
+        if (findUser) throw new HttpException(400, 'User already exists', 'FAILURE')
         const password = await bcrypt.hash(data.password, 10)
         return await userRepository.save({ ...data, password })
     }
@@ -24,11 +24,11 @@ class UserService {
     }
 
     public async loginUser(data: any): Promise<{ token: string; findUser: any }> {
-        if (!data) throw new HttpException(200, "please confirm user data", 'FAILURE');
+        if (!data) throw new HttpException(200, "Please confirm user data", 'FAILURE');
 
         const userRepository = getRepository(this.users);
         const findUser = await userRepository.findOne({ where: { email: data.email, isActive: true } });
-        if (!findUser) throw new HttpException(200, 'Invalid username or password', 'FAILURE');
+        if (!findUser) throw new HttpException(200, 'User not found', 'FAILURE');
 
         const isPasswordMatching: boolean = await bcrypt.compare(data.password, findUser.password);
         if (!isPasswordMatching) throw new HttpException(200, 'Invalid username or password', 'FAILURE');
